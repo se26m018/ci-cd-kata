@@ -21,5 +21,18 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # Level 2: Linting vor den Tests
+      - name: Run Linter
+        run: npm run lint
+
       - name: Run tests
         run: npm test
+
+      # Level 3: Artifact hochladen (packt die Dateien automatisch als ZIP auf GitHub)
+      - name: Upload Production Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-production-files
+          path: |
+            app.js
+            package.json
